@@ -2,9 +2,7 @@ package Transport;
 
 import java.time.LocalDate;
 
-public class Car {
-    private String mark;
-    private String model;
+public class Car extends Transport {
     private double volume;
     private String color;
     private int year;
@@ -16,18 +14,23 @@ public class Car {
     private boolean winterTires;
     private Key key;
 
-    public Car(String mark, String model, double volume, String color, int year, String country, String transmission, String bodyType, String regNumber, int seats, boolean winterTires) {
-        setMark(mark);
-        setModel(model);
+
+    public Car(String mark, String model, double volume, String color, int year, String country,
+               String transmission, String bodyType, String regNumber, int seats, boolean winterTires, int maxSpeed) {
+        super(mark, model, color, year, country, maxSpeed);
+
+        this.mark = checkDefault(mark, "default");
+        this.model = checkDefault(model, "default");
         setVolume(volume);
         setColor(color);
         setYear(year);
         setCountry(country);
         setTransmission(transmission);
-        this.bodyType = bodyType;
+        this.bodyType = checkDefault(bodyType, "default");
         setRegNumber(regNumber);
-        this.seats = seats;
+        this.seats = Math.max(seats, 4);
         setWinterTires(winterTires);
+        this.maxSpeed = getMaxSpeed();
     }
 
     public static class Key {
@@ -47,6 +50,7 @@ public class Car {
             return keylessAccess;
         }
     }
+
     public boolean isWinterTires() {
         return winterTires;
     }
@@ -99,14 +103,6 @@ public class Car {
     }
 
 
-    public String getMark() {
-        return mark;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
     public double getVolume() {
         return volume;
     }
@@ -131,45 +127,23 @@ public class Car {
         return country;
     }
 
-    public void setMark(String mark) {
-        this.mark = checkDefault(mark, "default");
-    }
-
-    public void setModel(String model) {
-        this.model = checkDefault(model, "default");
-    }
-
     public void setVolume(double volume) {
-        if (volume <= 0) {
-            this.volume = 1.5;
-        } else {
-            this.volume = volume;
-        }
-    }
-
-    public void setColor(String color) {
-        this.color = checkDefault(color, "белый");
+        this.volume = Math.max(volume, 1.5);
     }
 
     public void setYear(int year) {
-        if (year <= 0) {
-            this.year = 2000;
-        } else {
-            this.year = year;
-        }
+        this.year = Math.max(year, 2000);
     }
 
     public void setCountry(String country) {
         this.country = checkDefault(country, "default");
     }
-    public String checkDefault(String value, String error) {
-        if (value == null || value.isBlank()) {
-            return error;
-        } else {
-            return value;
-        }
-    }
+
     public void printCar() {
-        System.out.println("Автомобиль: " + getMark() + getModel() + ", " + getYear() + " год выпуска, сборка - " + getCountry() + ", " + getColor() + " цвет кузова, объем двигателя - " + getVolume() + " л, коробка передач - " + getTransmission() + ", тип кузова - " + getBodyType() + ", регистрационный номер - " + getRegNumber() + ", количество мест - " + getSeats());
+        System.out.println("Автомобиль: " + getMark() + getModel() + ", " + getYear() + " год выпуска, сборка - "
+                + getCountry() + ", " + getColor() + " цвет кузова, объем двигателя - " + getVolume() +
+                " л, коробка передач - " + getTransmission() + ", тип кузова - " + getBodyType() +
+                ", регистрационный номер - " + getRegNumber() + ", количество мест - " + getSeats() +
+                ", максимальная скорость - " + getMaxSpeed());
     }
 }
