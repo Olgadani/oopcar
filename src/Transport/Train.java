@@ -62,4 +62,9 @@ public class Train extends Transport {
                 ", скорость передвижения - " + getMaxSpeed() + "км/ч, отходит от " + getStartStation() + " и следует до " +
                 getFinishStation() + ". Цена поездки - " + getCostTrip() + "рублей, в поезде " + getCountWagons() + "вагонов");
     }
+
+    @Override
+    public void refill() {
+        System.out.println("Дизель");
+    }
 }

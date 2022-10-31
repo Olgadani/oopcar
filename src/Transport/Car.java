@@ -111,6 +111,11 @@ public class Car extends Transport {
         return color;
     }
 
+    @Override
+    public void refill() {
+        System.out.println("Бензин или дизель");
+    }
+
     public String getTransmission() {
         return transmission;
     }

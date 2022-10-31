@@ -1,6 +1,6 @@
 package Transport;
 
-public class Transport {
+public abstract class Transport {
     protected String mark;
     protected String model;
     private String color;
@@ -16,6 +16,8 @@ public class Transport {
         this.country = checkDefault(country, "Россия");
         this.maxSpeed = maxSpeed;
     }
+
+
 
     public int getYear() {
         return year;
@@ -55,4 +57,5 @@ public class Transport {
             return value;
         }
     }
-}
+
+    public abstract void refill();}
