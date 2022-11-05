@@ -41,6 +41,8 @@ public class Main {
         Bus paz = new Bus("", "", "", 2000, "", 100);
         Bus uaz = new Bus("", "", "", 2000, "", 100);
         ikarus.printBus();
+        paz.printBus();
+        uaz.printBus();
 
         Flower rose = new Flower("Роза обыкновенная", "Голландия", 35.59, 0);
         Flower chrysanthemum = new Flower("Хризантема", "", 15.00, 5);
